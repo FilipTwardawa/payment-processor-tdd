@@ -31,6 +31,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle
 
+      - name: Grant Execute Permission to gradlew
+        run: chmod +x gradlew
+
       - name: Run Tests with Coverage
         run: ./gradlew test jacocoTestReport
 
@@ -61,7 +64,7 @@ jobs:
           VALIDATE_JAVA: true
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ACTIONS_RUNNER_DEBUG: true # Optional: Debugging linting
+          LINTER_RULES_PATH: .github/linter-rules/
 
   format:
     name: Auto-Format Code with Super-Linter (Optional)
@@ -78,6 +81,5 @@ jobs:
           VALIDATE_JAVA: true
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ACTIONS_RUNNER_DEBUG: true # Optional: Debugging linting
           RUN_LOCAL: true # Activate local formatting mode
-          LINTER_RULES_PATH: .github/linter-rules/ # Optional, non-standard rules
+          LINTER_RULES_PATH: .github/linter-rules/
