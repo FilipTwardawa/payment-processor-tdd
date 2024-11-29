@@ -65,21 +65,3 @@ jobs:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LINTER_RULES_PATH: .github/linter-rules/
-
-  format:
-    name: Auto-Format Code with Super-Linter (Optional)
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Run Super-Linter with Auto-Format
-        uses: github/super-linter@v5
-        env:
-          VALIDATE_ALL_CODEBASE: true
-          VALIDATE_JAVA: true
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RUN_LOCAL: true # Activate local formatting mode
-          LINTER_RULES_PATH: .github/linter-rules/
